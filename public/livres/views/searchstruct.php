@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Bibliothèque</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="d-flex">
+
+    <div class="bg-dark text-white p-3" style="width:250px; min-height:100vh;">
+        <h4 class="text-center">📚 Admin</h4>
+        <hr>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+                <a href="auteurs/list.php" class="nav-link text-white">👤 Auteurs</a>
+            </li>
+            <li class="nav-item mb-2">
+                <a href="livres/list.php" class="nav-link text-white">📖 Livres</a>
+            </li>
+            <li class="nav-item mb-2">
+                <a href="lecteurs/list.php" class="nav-link text-white">👥 Lecteurs</a>
+            </li>
+            <li class="nav-item mb-2">
+                <a href="emprunts/list.php" class="nav-link text-white">🔄 Emprunts</a>
+            </li>
+            <li class="nav-item mb-2">
+                <a href="search.php" class="nav-link text-white">🔍 Recherche</a>
+            </li>
+            <li class="nav-item mb-2">
+                <a href="stats.php" class="nav-link text-white">📊 Statistiques</a>
+            </li>
+        </ul>
+    </div> 
+   
+    <div class="container-fluid p-4">
+
+         <div class="mb-4">
+            <h2>Recherche de livres</h2>
+        </div>
+
+         
+  <div class="card-body">
+            <form method="GET" action="search.php">
+                   <div class="mb-3">
+                        <label class="form-label">Titre</label>
+                        <input type="text" name="title" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Auteur</label>
+                        <select name="author" class="form-select">
+                            <option value="">Sélectionnez un auteur</option>                           
+                            <?php 
+            
+                               $auteurs = getAuteurs();
+                               foreach ($auteurs as $auteur): ?>
+                                <option value="<?= $auteur['nom'] ?>"><?= $auteur['nom'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                     </div>               
+                    <button type="submit" class="btn btn-warning">Rechercher</button>
+                    <a href="dashboard.php" class="btn btn-secondary">Retour</a>
+            </form>
+        </div> 
+    </div>      
+</div>
+
+</body>
+</html>
